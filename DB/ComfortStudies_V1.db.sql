@@ -41,7 +41,9 @@ CREATE TABLE IF NOT EXISTS "Room_Schedule" (
 );
 CREATE TABLE IF NOT EXISTS "Study_Room" (
 	"Room_ID"	INTEGER,
-	"Building"	INTEGER
+	"Building"	TEXT,
+	"Capacity"      INTEGER,
+	PRIMARY KEY("Room_ID")
 );
 CREATE TABLE IF NOT EXISTS "Student" (
 	"StudentID"	INTEGER UNIQUE,
