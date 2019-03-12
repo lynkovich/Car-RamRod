@@ -15,7 +15,11 @@ Class Main_Web_Page
 	}
 	/*This function will take the User_Name and Password and check if they match in the database
 	This function will also return what type of user this is after checking the database*/
-	public function Login
+	public function login
+	{
+		
+	}
+	public function logoff
 	{
 		
 	}
@@ -51,29 +55,40 @@ Class Web_User
 Class Room_Selection
 {
 	public int $Room_Number;
-	public int $Tutor_ID;
+	public int $Date;
+	public string $time;
 	//constructor for Room_Number and Tutor_ID
-	__construct($Room_Number, $Tutor_ID)
+	__construct($Room_Number)
 	{
 		$this->Room_Number = $Room_Number;
-		$this->Tutor_ID = $Tutor_ID;
 	}
 	//This function will take the Room_Number and reserve it in the database. It will send a sql statement making that particular room a true bool value
-	public function Reserve_Room
+	public function SelectDate()
 	{
 		
 	}
 	//This function will take the Tutor_ID and send a sql statement to that particular Tutor_ID and give that tutor a true bool value in the database
-	public function Reserve_Tutor
+	public function SelectRoom()
 	{
 		
 	}	
+	public function SelectTime()
+	{
+		
+	}
+	public function ConfirmRoom()
+	{
+		
+	}
 }
 
-Class Order_Selection
+Class Catering_Order_Selection
 {
-	public string Food_Item;
-	public string Drink_Item;
+	private string $items[];
+	private string $pickupTime;
+	private string $phoneNumber;
+	private string $firstName;
+	private string $lastName;
 	//constructor for Food_Item and Drink_Item
 	__construct($Food_Item, $Drink_Item)
 	{
@@ -81,19 +96,64 @@ Class Order_Selection
 		$this->Drink_Item = $Drink_Item;
 	}
 	//This function will add a Food_Item or Drink_Item to the users total and returns that total amount as well as the items in the list
-	function Add_Item
+	function viewCateringMenu()
 	{
 		
 	}
 	//This function will use the items added and total amount placed into the object created by Add_Item to check out and pay for those items
-	function Check_Out
+	function selectItems()
+	{
+		
+	}
+	function confirmItems()
+	{
+		
+	}
+	function confirmPurchase()
 	{
 		
 	}
 }
 //This is the database used to store all the data for the CS System
-Class Food_Selection_and_Study_Room_Database
+Class Tutor_Selection
 {
+	private int $tutorID;
+	
+	function viewAvailableTutors()
+	{
+		
+	}
+	function confirmTutorSelection()
+	{
+		
+	}
+	
+}
+
+Class Pickup_Order_Selection
+{
+	private string $items[];
+	private string $pickupTime;
+	private string $phoneNumber;
+	private string $firstName;
+	private string $lastName;
+
+	function selectItems()
+	{
+		
+	}
+	function selectTime()
+	{
+		
+	}
+	function confirmItems()
+	{
+		
+	}
+	function confirmPurchase()
+	{
+		
+	}
 	
 }
 	
