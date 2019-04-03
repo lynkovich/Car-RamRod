@@ -13,7 +13,8 @@ include 'config.php';
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<?php include 'student.php'; ?>
+	<?php include 'headers/student.php'; ?>
+	<h1> Reservation: <?php echo $_SESSION['reservationID']; ?> </h1>
 	<a href="cateringOrder.php">Add Catering Order</a>
 	<a href="tutoring.php">Add Tutor</a>
 </body>

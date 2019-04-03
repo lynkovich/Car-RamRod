@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include 'config.php';
-include 'Tutor_Selection.class.php';
+include 'classes/Tutor_Selection.class.php';
 $tutors = new Tutor_Selection();
 $tutors->getAvailableTutors();
 ?>
@@ -16,7 +16,10 @@ $tutors->getAvailableTutors();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<?php include 'student.php';
+	<?php include 'headers/student.php';
 	echo $tutors->printAvailableTutors();  ?>
 </body>
+<script>
+	
+</script>
 </html>

@@ -2,7 +2,7 @@
 session_start();
 $_SESSION['studentID'] = "2254";
 include 'config.php';
-include 'Room_Selection.class.php';
+include 'classes/Room_Selection.class.php';
 $beenset = false;
 if(!empty($_GET['date'])&&!empty($_GET['capacity'])&&!empty($_GET['start'])&&!empty($_GET['finish']))
 {
@@ -23,7 +23,7 @@ if(!empty($_GET['date'])&&!empty($_GET['capacity'])&&!empty($_GET['start'])&&!em
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<?php include 'student.php'; ?>
+	<?php include 'headers/student.php'; ?>
 	<div class="form-group">
 	<form action="roomReservation.php" method="get">
 	  <label for="capacity">Quantity of People:</label>

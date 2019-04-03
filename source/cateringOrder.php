@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include 'config.php';
-include 'Catering_Order_Selection.class.php';
+include 'classes/Catering_Order_Selection.class.php';
 $order = new Catering_Order_Selection();
 $order->getCateringMenu();
 ?>
@@ -16,7 +16,18 @@ $order->getCateringMenu();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<?php include 'student.php';
+	<?php include 'headers/student.php';
 			echo $order->printCateringMenu(); ?>
 </body>
+<script>
+$(".cateringOption").change(function(){
+  $(this).next().text(($(this).attr("data-price")*$(this).val()).toFixed(2));
+  var total = 0;
+  $.each($('.sub'), function (index, value) {
+  	total = total + parseFloat($(value).text());
+  });
+  $(".total").val(total.toFixed(2));
+  $(".total").next().text(total.toFixed(2));
+});
+</script>
 </html>

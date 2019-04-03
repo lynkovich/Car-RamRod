@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'Room_Selection.class.php';
+include 'classes/Room_Selection.class.php';
 include 'config.php';
 $beenset = false;
 if(!empty($_SESSION['studentID'])&&!empty($_COOKIE['startTime'])&&!empty($_COOKIE['finishTime']))
