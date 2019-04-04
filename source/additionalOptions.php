@@ -15,7 +15,26 @@ include 'config.php';
 <body>
 	<?php include 'headers/student.php'; ?>
 	<h1> Reservation: <?php echo $_SESSION['reservationID']; ?> </h1>
-	<a href="cateringOrder.php">Add Catering Order</a>
-	<a href="tutoring.php">Add Tutor</a>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Catering:</th>
+        <th>Tutor:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="cateringOrder.php">Add Catering Order</a></td>
+        <td>
+          <?php 
+            if(!empty($_SESSION['tutorID']))
+                echo $_SESSION['tutorID'];
+              else
+                echo "<a href='tutoring.php'>Add Tutor</a>";
+          ?>
+        </td>
+      </tr>
+    </tbody>
+  </table>	
 </body>
 </html>
