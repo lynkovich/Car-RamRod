@@ -1,0 +1,33 @@
+.navbar-custom {
+    background-color: #080986;
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: #EBCE14;
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: #EBCE14;
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item:active .nav-link,
+.navbar-custom .nav-item:focus .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: white;
+}
+@media (max-width: 767px) {
+  .dropdown-menu{
+    background-color: #080986;
+	 border: none;
+  }
+  @media (max-width: 767px) {
+  .dropdown-item{
+    color: #EBCE14;
+  }
+@media (max-width: 767px) {
+  a.dropdown-item:hover{
+    background-color: #080986;
+	 border: none;
+	 color: white;
+  }

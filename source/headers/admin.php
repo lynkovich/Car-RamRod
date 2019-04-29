@@ -1,24 +1,37 @@
 <header>
-<nav class="navbar navbar-inverse navbar-light" style="background-color:#0707B3;">
-  <div class="container-fluid" >
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <img src="images/navlogov1.png" style="border-radius: 10px;" alt="Comfort Studies">
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="#" font="color:white"><span class="glyphicon glyphicon-home" style="color:white"><span style="color:white"> Home</span></a></li>
-        <li><a href="#" font="color:white"><span class="glyphicon glyphicon-education" style="color:white"></span> <span style="color:white">Modify Reservation</span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-cutlery" style="color:white"></span><span style="color:white"> Modify Menu</span></a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-off" style="color:white"></span><span style="color:white"> Sign-Out</span></a></li>
-      </ul>
-    </div>
-  </div>
+<nav class="navbar navbar-expand-sm navbar-custom navbar-light">
+  <a class="navbar-brand">
+          <img src="images/navlogov1.png" alt="Comfort Studies">
+		 <!--This line below is to change logo on smaller screens 
+				need to make smaller logo.
+		<img src="navlogov1.png" class="d-lg-inline-block d-none" alt="">
+		 <img src="icon.png" class="d-inline-block d-lg-none" ></img>  -->
+        </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon" style="color:black"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Modify Reservation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Modify Menu</a>
+      </li>
+	  </ul>
+	  <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?php echo $_SESSION['login_username']; ?>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="home.php">Account</a>
+          
+          <a class="dropdown-item" href="login/logout.php">Sign-out</a>
+        </div>
+      </li>
+    </ul>
+  </div>  
 </nav>
 </header>
+

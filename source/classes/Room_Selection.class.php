@@ -1,13 +1,28 @@
 <?php 
 Class Room_Selection
 {
+	private $studentID;
+	private $reservationID;
 	private $roomNumber;
 	private $resdate;
 	private $startTime;
 	private $finishTime;
 	private $capacity;
 	private $availableRoomQuery;
+	private $reservationQuery;
 	
+	public function SelectStudentID($s)
+	{
+		$this->studentID = $s;
+		//$_COOKIE['capacity'] = $this->capacity;
+	}
+
+	public function SelectReservationID($r)
+	{
+		$this->reservationID = $r;
+		//$_COOKIE['capacity'] = $this->capacity;
+	}
+
 	public function SelectCapacity($c)
 	{
 		$this->capacity = $c;
@@ -58,27 +73,27 @@ Class Room_Selection
 	}
 	public function printAvailableRooms()
 	{
-		$returnstring = "<h3>Click a room to reserve:</h3><ul class='list-group'>";
+		$returnstring = "<h4>Click a room to reserve:</h4>";
 		while ($row = $this->availableRoomQuery->fetch()) 
 		{
-			$returnstring = $returnstring."<li class='list-group-item'><a data-toggle='modal' href='#".$row['Room_ID']."Modal'>".$row['Building']." ".$row['Room_ID']."</a></li>\n";
-			$returnstring = $returnstring."	<div id='".$row['Room_ID']."Modal' class='modal fade' role='dialog'>
+			$returnstring = $returnstring."<li class='list-group-item'><a data-toggle='modal' href='#my".$row['Room_ID']."Modal'>".$row['Building']." ".$row['Room_ID']."</a></li>\n";
+			$returnstring = $returnstring."	<div id='my".$row['Room_ID']."Modal' class='modal fade'>
 											  <div class='modal-dialog'>
 
 											    <!-- Modal content-->
 											    <div class='modal-content'>
 											      <div class='modal-header'>
-											        <button type='button' class='close' data-dismiss='modal'>&times;</button>
 											        <h4 class='modal-title'>Book this room</h4>
 											      </div>
 											      <div class='modal-body'>
-											        <p>Details: Room: ".$row['Room_ID']." in the ".$row['Building']." building from ".$this->startTime." to ".$this->finishTime."</p>
+											        <b>Details:</b><br><p> Room: ".$row['Room_ID']." in the ".$row['Building']." building.<br>Reserved From: ".$this->startTime."<br>Until: ".$this->finishTime."</p>
 											      </div>
 											      <div class='modal-footer'>
-											      	<form action='enterReservation.php' method='get'>
+											      	<form action='enter/enterReservation.php' method='get'>
 											        	<button type='submit' class='btn btn-default' name='roomNumber' value='".$row['Room_ID']."'>Submit</button>
+											        	<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
 											        </form>
-											        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+											        
 											      </div>
 											    </div>
 
@@ -86,7 +101,7 @@ Class Room_Selection
 											</div>
 										";
 		}
-		$returnstring .= "</ui>";
+		
 
 		return $returnstring;
 	}
@@ -98,7 +113,7 @@ Class Room_Selection
 		   $sql = "INSERT INTO reservation (StudentID)
 					VALUES (:studentID);";
 		$statement = $pdo->prepare($sql);
-		$statement->bindParam(':studentID', $_SESSION['studentID']);
+		$statement->bindParam(':studentID', $_SESSION['login_user']);
 		 if($statement->execute() === false){
 			 echo 'Error';
 			 }else{
@@ -125,5 +140,82 @@ Class Room_Selection
 		}
 
 	}
+
+	function getRoomReservations(){
+		try {
+		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
+		   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		   
+			$sql = "select reservation.Reserv_ID, roomschedule.Room_ID, roomschedule.startTime , roomschedule.endTime from reservation left join roomschedule on reservation.Reserv_ID = roomschedule.Reserv_ID where roomschedule.startTime > CURRENT_TIMESTAMP() and StudentID = :studentid ORDER BY roomschedule.startTime ASC;";
+			$statement = $pdo->prepare($sql);
+			$statement->bindParam(':studentid', $this->studentID);
+			$statement->execute();
+			$this->reservationQuery = $statement;
+			 $pdo = null;
+		}
+		catch (PDOException $e) {
+		   die( $e->getMessage() );
+		}
+	}
+
+	function roomReservationWidget()
+	{
+		$returnstring =  "<div class='card'>
+  			<div class='card-header'>Room Reservations</div>
+  			<div class='card-body'>
+  				<table class='table table-borderless'>
+			    <thead>
+			      <tr>
+			        <th>Study Room</th>
+			        <th>Start</th>
+			        <th>End</th>
+			        <th></th>
+			      </tr>
+			    </thead>
+			    <tbody>";
+			    while ($row = $this->reservationQuery->fetch())
+			    {
+			      $returnstring = $returnstring."<tr>
+			        <td>".$row['Room_ID']."</td>
+			        <td>".$row['startTime']."</td>
+			        <td>".$row['endTime']."</td>
+			        <td>
+			        <a href='additionalOptions.php?reservation=".$row['Reserv_ID']."'>View</a></td>";
+			      $returnstring = $returnstring."</tr>";
+			    }  
+		$returnstring = $returnstring."</tbody>
+			  </table>
+  			</div> 
+		</div>";
+
+		return $returnstring;
+	}
+
+	function setAdditionalOptionSessions()
+	{
+		try {
+		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
+		   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		   
+			$sql = "select TutorID, CateringOrderID from reservation where Reserv_ID = :resid;";
+			$statement = $pdo->prepare($sql);
+			$statement->bindParam(':resid', $this->reservationID);
+			$statement->execute();
+			$result = $statement->fetch();
+			$pdo = null;
+		}
+		catch (PDOException $e) {
+		   die( $e->getMessage() );
+		}
+		if(!empty($result['TutorID']))
+		{
+			$_SESSION['tutorID'] = $result['TutorID'];
+		}
+		if(!empty($result['CateringOrderID']))
+		{
+			$_SESSION['cateringID'] = $result['CateringOrderID'];
+		}
+	}
+	
 }
 ?>

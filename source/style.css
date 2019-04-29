@@ -1,0 +1,15 @@
+.center {
+	margin: auto;
+	width: 90%;
+	padding: 10px;
+}
+
+h4 {
+	font-style: bold;
+}
+
+
+.list-group-item {
+	width: 50%;
+}
+

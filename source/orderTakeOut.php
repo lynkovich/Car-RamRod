@@ -5,14 +5,17 @@ if(empty($_SESSION['login_user']))
   header("Location: login/sign.php");
 }
 include 'config.php';
-include 'classes/Catering_Order_Selection.class.php';
-$order = new Catering_Order_Selection();
-$order->getCateringMenu();
+include 'classes/Pickup_Order_Selection.class.php';
+$order = new Pickup_Order_Selection();
+$order->getPickupMenu();
+unset($_SESSION['reservationID']);
+  unset($_SESSION['tutorID']);
+  unset($_SESSION['cateringID']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Catering Order</title>
+  <title>Pickup Order</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -22,16 +25,22 @@ $order->getCateringMenu();
 <link rel="stylesheet" href="navcss.css">
 </head>
 <body>
-	<?php if($_SESSION['login_type'] == 'Admin') include 'headers/admin.php';
-	else if($_SESSION['login_type'] == 'Student')  include 'headers/student.php';
-	else if($_SESSION['login_type'] == 'Faculty')  include 'headers/faculty.php';?>
-	<div class = 'container'>
+  <?php if($_SESSION['login_type'] == 'Admin') include 'headers/admin.php';
+  else if($_SESSION['login_type'] == 'Student')  include 'headers/student.php';
+  else if($_SESSION['login_type'] == 'Faculty')  include 'headers/faculty.php';
+  ?>
+  <div class = 'container'>
     <div class = 'row'>
-      <div class="col-md-6"><?php echo $order->printCateringMenu(); ?></div>
+      <div class="col-md-6"><?php echo $order->printPickupMenu(); ?></div>
       <div class="col-md-6">
         <h4>Order</h4>
-        <form  class = 'runningorder' action="enter/enterCateringOrder.php" method="get" style = 'display:none;'>
+        <form  class = 'runningorder' action="enter/enterPickupOrder.php" method="get" style = 'display:none;'>
           <br>
+          <label>Enter a Pick-up Date:</label>
+          <input type="date" id="pickupdate" name="pickupdate" required>
+          <br><br>
+          <label>Enter a Pick-up Time:</label>
+          <input type="time" id="pickuptime" min='07:30:00'  max ='15:30:00' name="pickuptime" required>
           <br><br>
           <p>Total Price: $<span class = "totaltext"></span></p>
           <button class = 'total' name ='total' value = 5 type='submit'>Enter Order</button>
@@ -41,6 +50,17 @@ $order->getCateringMenu();
   </div>
 </body>
 <script>
+  var now = new Date();
+
+  var day = ("0" + now.getDate()).slice(-2);
+  var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+  var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+  $('#pickupdate').val(today);
+  $('#pickupdate').attr("min",today);
+
+
+
 $(".addItem").click(function(){
   
 
@@ -68,5 +88,8 @@ $(".runningorder").on( "change", ".pickupitem", function(){
    $(".total").val(total.toFixed(2));
    $(".totaltext").text(total.toFixed(2));
 });
+
+
+
 </script>
 </html>

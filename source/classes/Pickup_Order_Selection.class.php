@@ -1,13 +1,16 @@
 <?php
-Class Catering_Order_Selection
+Class Pickup_Order_Selection
 {
 	private $items = array();
 	private $orderID;
 	private $pickupTime;
 	private $totalPrice;
-	private $caterMenuQuery = array();
+	private $dateTime;
+	private $pickupMenuQuery = array();
 	private $totalPriceQuery;
 	private $itemsQuery;
+	private $studentID;
+	private $orderQuery;
 
 
 
@@ -16,11 +19,11 @@ Class Catering_Order_Selection
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
 		   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		   $sql = "SELECT menucater.Name, Price, Quantity from caterorderitems left join menucater on caterorderitems.ItemID = menucater.Item_ID where CateringOrderID = :id;";
+		   $sql = "SELECT menupickup.Name, Price, Quantity from orderitems left join menupickup on orderitems.ItemID = menupickup.Item_ID where OrderID = :id;";
 		   $statementItems = $pdo->prepare($sql);
 		   $statementItems->bindParam(':id', $this->orderID);
 		   $statementItems->execute();
-		   $sql = "SELECT TotalPrice from cateringorder where CateringOrderID = :id;";
+		   $sql = "SELECT OrderTotal from pickuporders where OrderID = :id;";
 		   $statementPrice = $pdo->prepare($sql);
 		   $statementPrice->bindParam(':id', $this->orderID);
 		   $statementPrice->execute();
@@ -36,21 +39,20 @@ Class Catering_Order_Selection
 
 	function printReceipt()
 	{
-		$returnstring = "<a data-toggle='modal' href='#receiptModal'>View #".$this->orderID." Receipt</a>";
-		$returnstring = $returnstring."	<div id='receiptModal' class='modal fade' role='dialog'>
+		$returnstring = "<a data-toggle='modal' href='#my".$this->orderID."receiptModal'>View #".$this->orderID." Receipt</a>";
+		$returnstring = $returnstring."	<div id='my".$this->orderID."receiptModal' class='modal fade' role='dialog'>
 											  <div class='modal-dialog'>
 
 											    <!-- Modal content-->
 											    <div class='modal-content'>
 											      <div class='modal-header'>
-											        <button type='button' class='close' data-dismiss='modal'>&times;</button>
 											        <h4 class='modal-title'>Receipt</h4>
 											      </div>
 											      <div class='modal-body'>";
 											      while ($row = $this->itemsQuery->fetch()) 
 											        $returnstring = $returnstring."<b>".$row['Name']."</b><br><p>Quantity: ".$row['Quantity']."</p><p>Price per Item: $".$row['Price']."</p><p>Price: ".number_format($row['Price']*$row['Quantity'],2)."</p><hr>";
 											    while($row = $this->totalPriceQuery->fetch())
-											    	$returnstring = $returnstring."<b> Total Price: $".$row['TotalPrice']."</b>";
+											    	$returnstring = $returnstring."<b> Total Price: $".$row['OrderTotal']."</b>";
 											      $returnstring = $returnstring."</div>
 											      <div class='modal-footer'>
 											        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
@@ -64,12 +66,12 @@ Class Catering_Order_Selection
 
 	}
 
-	function getCateringMenu()
+	function getPickUpMenu()
 	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
 		   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		   $sql = "SELECT distinct Category from menucater;";
+		   $sql = "SELECT distinct Category from menupickup;";
 		   $categories = $pdo->prepare($sql);
 		   $categories->execute();
 		}
@@ -80,13 +82,13 @@ Class Catering_Order_Selection
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
 		   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		   $sql = "SELECT Item_ID, Name, Price from menucater where Category = :category;";
+		   $sql = "SELECT Item_ID, Name, Price from menupickup where Category = :category;";
 
 		   while($row = $categories->fetch()){
 		   		$result = $pdo->prepare($sql);
 		   		$result->bindParam(':category', $row['Category']);
 		   		$result->execute();
-		   		$this->caterMenuQuery[$row['Category']] = $result;
+		   		$this->pickupMenuQuery[$row['Category']] = $result;
 		   	}
 		}
 		catch (PDOException $e) {
@@ -94,18 +96,17 @@ Class Catering_Order_Selection
 		}
 		$pdo = NULL;
 	}
-	function printCateringMenu()
+	function printPickupMenu()
 	{
-		$i = 1000;
 		$returnstring = "<h4>Menu: </h4><div id='accordion'>";
-		foreach($this->caterMenuQuery as $key => $value){
+		foreach($this->pickupMenuQuery as $key => $value){
 		$returnstring = $returnstring." <div class='card'>
 									      <div class='card-header'>
-									        <a class='card-link' data-toggle='collapse' href='#collapse".$i."'>
+									        <a class='card-link' data-toggle='collapse' href='#".substr($key, 0, 4)."'>
 									          ".$key."
 									        </a>
 									      </div>
-									      <div id='collapse".$i."' class='collapse' data-parent='#accordion'>
+									      <div id='".substr($key,0, 4)."' class='collapse' data-parent='#accordion'>
 									        <div class='card-body'>
 									        <ul class='list-group'>";
 		while ($row = $value->fetch()) 
@@ -134,11 +135,11 @@ Class Catering_Order_Selection
 										";
 		}
 		$returnstring .= "</ul></div></div></div>";
-		$i++;
-		}
+
+	}
 		
 
-		return $returnstring .= "</div>";
+		return $returnstring."</div>";
 	}
 	//This function will use the items added and total amount placed into the object created by Add_Item to check out and pay for those items
 	function selectItems($k, $v)
@@ -151,9 +152,20 @@ Class Catering_Order_Selection
 		$this->totalPrice = $t;
 	}
 
+	function selectStudent($s)
+	{
+		$this->studentID = $s;
+	}
+
+
 	function selectOrderID($i)
 	{
 		$this->orderID = $i;
+	}
+
+	function selectDateTime($d, $t)
+	{
+		$this->dateTime = $d." ".$t;
 	}
 
 	function confirmPurchase()
@@ -161,16 +173,18 @@ Class Catering_Order_Selection
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
 		   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		   $sql = "INSERT INTO cateringorder (TotalPrice)
-					VALUES (:totalPrice);";
+		   $sql = "INSERT INTO pickuporders (StudentID, OrderTotal, PickUpTime)
+					VALUES (:studentid, :totalPrice, :pickuptime);";
 		$statement = $pdo->prepare($sql);
+		$statement->bindParam(':studentid', $this->studentID);
 		$statement->bindParam(':totalPrice', $this->totalPrice);
+		$statement->bindParam(':pickuptime', $this->dateTime);
 		 if($statement->execute() === false){
 			 echo 'Error';
 			 }else{
-			 	$_SESSION['cateringID'] = $pdo->lastInsertId();
+			 	//$_SESSION['pickupID'] = $pdo->lastInsertId();
 		 }
-		 $sql = "INSERT INTO caterorderitems (CateringOrderID, ItemID, Quantity )
+		 $sql = "INSERT INTO orderitems (OrderID, ItemID, Quantity )
 					values (LAST_INSERT_ID(), :itemID , :quantity );";
 		$statement = $pdo->prepare($sql);
 		$statement->bindParam(':itemID', $itemIDParam);
@@ -184,15 +198,6 @@ Class Catering_Order_Selection
 				 
 			 }
 		}
-		$sql = "UPDATE reservation
-				SET CateringOrderID = LAST_INSERT_ID()
-				WHERE Reserv_ID = :reservID;";
-		$statement = $pdo->prepare($sql);
-		$statement->bindParam(':reservID', $_SESSION['reservationID']);
-		 if($statement->execute() === false){
-			 echo 'Error';
-			 }else{
-		 }
 		 $pdo = null;
 
 
@@ -200,6 +205,57 @@ Class Catering_Order_Selection
 		catch (PDOException $e) {
 		   die( $e->getMessage() );
 		}
+	}
+
+	function getPickUpOrders(){
+		try {
+		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
+		   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		   
+			$sql = "select OrderID, PickUpTime from pickuporders where StudentID = :id and PickUpTime > CURRENT_TIMESTAMP();";
+			$statement = $pdo->prepare($sql);
+			$statement->bindParam(':id', $this->studentID);
+			$statement->execute();
+			$this->orderQuery = $statement;
+			 $pdo = null;
+		}
+		catch (PDOException $e) {
+		   die( $e->getMessage() );
+		}
+	}
+
+	function pickupOrdersWidget()
+	{
+		$returnstring =  "<div class='card'>
+  			<div class='card-header'>Pick Up Orders</div>
+  			<div class='card-body'>
+  				<table class='table table-borderless'>
+			    <thead>
+			      <tr>
+			        <th>Order</th>
+			        <th>Pick Up Time</th>
+			        <th>Receipt</th>
+			      </tr>
+			    </thead>
+			    <tbody>";
+			    while ($row = $this->orderQuery->fetch())
+			    {
+			    	$this->selectOrderID($row['OrderID']);
+			    	$this->getReceiptQueries();
+			    	$receiptstring = $this->printReceipt();
+			      $returnstring = $returnstring."<tr>
+			        <td>".$row['OrderID']."</td>
+			        <td>".$row['PickUpTime']."</td>
+			        <td>".$receiptstring."</td>";
+			       
+			      $returnstring = $returnstring."</tr>";
+			    }  
+		$returnstring = $returnstring."</tbody>
+			  </table>
+  			</div> 
+		</div>";
+
+		return $returnstring;
 	}
 }
 ?>
