@@ -20,4 +20,4 @@ Project is created with:
 * jQuery
 
 ## Features
-The main features of the 
+The main features of CS is to have a live update on study rooms, better study room scheduler, and food ordering system.
