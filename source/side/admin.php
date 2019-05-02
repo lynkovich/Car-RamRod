@@ -7,14 +7,15 @@
       <div><?php ShowUserDetails();?></div><br>
 	  <div class="row">
 		<div class="col-sm-5">
-		<h6>Modify Reservations</h6>
-		<p>Click below to modify reservations</p>
-		<a href="#" class="btn btn-info" role="button">Modify</a>
+		<h6>Cancel Reservations</h6>
+		<p>Click search to find and cancel reservations.</p>
+		<a href="./DeleteReservation.php" class="btn btn-info" role="button">Search</a>
 		</div>
 		<div class="col-sm-5">
 		<h6>Modify Menu</h6>
-		<p>Click below to modify menu</p>
-		<a href="../UpdateMenu.php" class="btn btn-info" role="button">Modify</a>
+		<p>Click on the menu you wish to update.</p>
+		<a href="./UpdateMenu.php" class="btn btn-info" role="button">Catering</a>
+		<a href="./UpdatePickupMenu.php" class="btn btn-info" role="button">Pickup</a>
 		</div>
 		</div>
 	</div>

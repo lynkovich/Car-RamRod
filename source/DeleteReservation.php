@@ -100,7 +100,7 @@ if(isset($_GET['yes'])){
 	include 'config.php';
 	?>
 	<div class="container">
-	<h1>Delete Study Room</h1>
+	<h1>Remove Study Room Reservation</h1>
 	<div class="card bg-light">
 		<div class = "card-body">
 			<form action="DeleteReservation.php" method="get">

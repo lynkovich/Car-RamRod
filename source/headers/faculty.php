@@ -1,6 +1,6 @@
 <header>
 <nav class="navbar navbar-expand-sm navbar-custom navbar-light">
-  <a class="navbar-brand">
+  <a class="navbar-brand" href="./home.php">
           <img src="images/navlogov1.png" alt="Comfort Studies">
 		 <!--This line below is to change logo on smaller screens 
 				need to make smaller logo.

@@ -16,4 +16,4 @@ function ()
             }          
         }
     })
-}, 300); // check every 30000 milliseconds
+}, 300); // check every 300 milliseconds
