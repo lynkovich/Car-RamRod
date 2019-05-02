@@ -1,0 +1,32 @@
+\hypertarget{adtest_8php}{}\section{classes/adtest.php File Reference}
+\label{adtest_8php}\index{classes/adtest.php@{classes/adtest.php}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{adtest_8php_a0d9c79b9b86b3f5891c6d3892f12c6a0}{\$connection}} = mysql\+\_\+connect(\char`\"{}localhost\char`\"{}, \char`\"{}lmaynar1\char`\"{}, \char`\"{}Comfortstudies\char`\"{})
+\item 
+\mbox{\hyperlink{adtest_8php_a1fa3127fc82f96b1436d871ef02be319}{\$db}} = mysql\+\_\+select\+\_\+db(\char`\"{}lmaynar1\char`\"{}, \$connection)
+\item 
+if(isset(\$\+\_\+\+G\+ET\mbox{[}\textquotesingle{}submit\textquotesingle{}\mbox{]})) \mbox{\hyperlink{adtest_8php_a51a06cb0fab0928d3f8e3985e84a8379}{\$query}} = mysql\+\_\+query(\char`\"{}select $\ast$ from menucater\char`\"{}, \$connection)
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{adtest_8php_a0d9c79b9b86b3f5891c6d3892f12c6a0}\label{adtest_8php_a0d9c79b9b86b3f5891c6d3892f12c6a0}} 
+\index{adtest.php@{adtest.php}!\$connection@{\$connection}}
+\index{\$connection@{\$connection}!adtest.php@{adtest.php}}
+\subsubsection{\texorpdfstring{\$connection}{$connection}}
+{\footnotesize\ttfamily \$connection = mysql\+\_\+connect(\char`\"{}localhost\char`\"{}, \char`\"{}lmaynar1\char`\"{}, \char`\"{}Comfortstudies\char`\"{})}
+
+\mbox{\Hypertarget{adtest_8php_a1fa3127fc82f96b1436d871ef02be319}\label{adtest_8php_a1fa3127fc82f96b1436d871ef02be319}} 
+\index{adtest.php@{adtest.php}!\$db@{\$db}}
+\index{\$db@{\$db}!adtest.php@{adtest.php}}
+\subsubsection{\texorpdfstring{\$db}{$db}}
+{\footnotesize\ttfamily \$db = mysql\+\_\+select\+\_\+db(\char`\"{}lmaynar1\char`\"{}, \$connection)}
+
+\mbox{\Hypertarget{adtest_8php_a51a06cb0fab0928d3f8e3985e84a8379}\label{adtest_8php_a51a06cb0fab0928d3f8e3985e84a8379}} 
+\index{adtest.php@{adtest.php}!\$query@{\$query}}
+\index{\$query@{\$query}!adtest.php@{adtest.php}}
+\subsubsection{\texorpdfstring{\$query}{$query}}
+{\footnotesize\ttfamily if (isset( \$\+\_\+\+G\+ET\mbox{[} \textquotesingle{}submit\textquotesingle{}\mbox{]})) \$query = mysql\+\_\+query(\char`\"{}select $\ast$ from menucater\char`\"{}, \$connection)}
+

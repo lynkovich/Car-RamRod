@@ -1,0 +1,175 @@
+\hypertarget{_tutor___selection_8class_8php}{}\section{classes/\+Tutor\+\_\+\+Selection.class.\+php File Reference}
+\label{_tutor___selection_8class_8php}\index{classes/Tutor\_Selection.class.php@{classes/Tutor\_Selection.class.php}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_abe3cd5bb61d47a195d45d6f2dd6477c6}{select\+User\+ID}} (\$u)
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_abd658239b3f73bb1c30c51b4f4c4f2a2}{select\+Tutor\+ID}} (\$t)
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_a78fc1624ae4a44a300484ac00e0b9a96}{select\+Reservation\+ID}} (\$r)
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_a82ba4a18d02d84b563e0ed644c4a846e}{get\+Available\+Tutors}} ()
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_a917e4fb0b95699badf69324e683ef2f9}{print\+Available\+Tutors}} ()
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_aca7f4f4fe9e0cde1169098ed7bb363df}{confirm\+Tutor\+Selection}} ()
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_a8297068ed77f57ec6bd722bdffda73b4}{get\+Tutor\+Reservations}} ()
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_ac3d759ab05a37faccd599d582b1eccda}{tutor\+Confirmation\+Widget}} ()
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_a49550acc8d52a9fc8ef060230adfa71e}{confirm\+Appointment}} ()
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_a5d29ebf3838fdcd42ffe4db5d4fb4308}{deny\+Appointment}} ()
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_aa55c439250d7b602d25701d20080575c}{get\+Tutor\+Reservation\+Info}} ()
+\item 
+\mbox{\hyperlink{_tutor___selection_8class_8php_a8d1cd85c5c7884b46ddce6e94f0bc585}{print\+Tutor\+Reservation\+Status}} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Class \mbox{\hyperlink{_tutor___selection_8class_8php_ae781e26d5acd9bf768dc9600a970f35e}{Tutor\+\_\+\+Selection}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_a49550acc8d52a9fc8ef060230adfa71e}\label{_tutor___selection_8class_8php_a49550acc8d52a9fc8ef060230adfa71e}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!confirmAppointment@{confirmAppointment}}
+\index{confirmAppointment@{confirmAppointment}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{confirmAppointment()}{confirmAppointment()}}
+{\footnotesize\ttfamily confirm\+Appointment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will update the tutor confirmation for a specific reservation to confirmed. Must call \mbox{\hyperlink{_tutor___selection_8class_8php_abd658239b3f73bb1c30c51b4f4c4f2a2}{select\+Tutor\+I\+D()}} and \mbox{\hyperlink{_tutor___selection_8class_8php_a78fc1624ae4a44a300484ac00e0b9a96}{select\+Reservation\+I\+D()}} first \begin{DoxyReturn}{Returns}
+If the tutor\+ID matches that of the reservation, Tutor\+Confirmation of the specific reservation in the reservation table will be updated to 1(Confirmed). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_aca7f4f4fe9e0cde1169098ed7bb363df}\label{_tutor___selection_8class_8php_aca7f4f4fe9e0cde1169098ed7bb363df}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!confirmTutorSelection@{confirmTutorSelection}}
+\index{confirmTutorSelection@{confirmTutorSelection}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{confirmTutorSelection()}{confirmTutorSelection()}}
+{\footnotesize\ttfamily confirm\+Tutor\+Selection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will insert the chosen tutor into the current reservation and make the status pending Must call \mbox{\hyperlink{_tutor___selection_8class_8php_abd658239b3f73bb1c30c51b4f4c4f2a2}{select\+Tutor\+I\+D()}} first. \begin{DoxyReturn}{Returns}
+The function will insert \$tutor\+ID into the tutorid column in the reservation table and set Tutor\+Confirmation to 3(pending) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_a5d29ebf3838fdcd42ffe4db5d4fb4308}\label{_tutor___selection_8class_8php_a5d29ebf3838fdcd42ffe4db5d4fb4308}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!denyAppointment@{denyAppointment}}
+\index{denyAppointment@{denyAppointment}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{denyAppointment()}{denyAppointment()}}
+{\footnotesize\ttfamily deny\+Appointment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will update the tutor confirmation for a specific reservation to denied and delete the tutor from the reservation. Must call \mbox{\hyperlink{_tutor___selection_8class_8php_abd658239b3f73bb1c30c51b4f4c4f2a2}{select\+Tutor\+I\+D()}} and \mbox{\hyperlink{_tutor___selection_8class_8php_a78fc1624ae4a44a300484ac00e0b9a96}{select\+Reservation\+I\+D()}} first \begin{DoxyReturn}{Returns}
+If the tutor\+ID matches that of the reservation, Tutor\+Confirmation of the specific reservation in the reservation table will be updated to 2(Denied) and the Tutor\+ID will be set to N\+U\+LL. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_a82ba4a18d02d84b563e0ed644c4a846e}\label{_tutor___selection_8class_8php_a82ba4a18d02d84b563e0ed644c4a846e}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!getAvailableTutors@{getAvailableTutors}}
+\index{getAvailableTutors@{getAvailableTutors}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getAvailableTutors()}{getAvailableTutors()}}
+{\footnotesize\ttfamily get\+Available\+Tutors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function is used to run a query for all available tutors each by subject. Must call \mbox{\hyperlink{_tutor___selection_8class_8php_abd658239b3f73bb1c30c51b4f4c4f2a2}{select\+Tutor\+I\+D()}} first to prevent the current user from appearing on the list \begin{DoxyReturn}{Returns}
+\$tutor\+Query array will contain query results with the key being the subject. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_aa55c439250d7b602d25701d20080575c}\label{_tutor___selection_8class_8php_aa55c439250d7b602d25701d20080575c}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!getTutorReservationInfo@{getTutorReservationInfo}}
+\index{getTutorReservationInfo@{getTutorReservationInfo}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getTutorReservationInfo()}{getTutorReservationInfo()}}
+{\footnotesize\ttfamily get\+Tutor\+Reservation\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will run a query to get confirmation status and tutor info for the specified reservation. Must call \mbox{\hyperlink{_tutor___selection_8class_8php_a78fc1624ae4a44a300484ac00e0b9a96}{select\+Reservation\+I\+D()}} first \begin{DoxyReturn}{Returns}
+\$single\+Reservation\+Array will be assigned the query result 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_a8297068ed77f57ec6bd722bdffda73b4}\label{_tutor___selection_8class_8php_a8297068ed77f57ec6bd722bdffda73b4}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!getTutorReservations@{getTutorReservations}}
+\index{getTutorReservations@{getTutorReservations}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getTutorReservations()}{getTutorReservations()}}
+{\footnotesize\ttfamily get\+Tutor\+Reservations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will run a query for all of the reservations a tutor is part of past the current time and date Must call \mbox{\hyperlink{_tutor___selection_8class_8php_abd658239b3f73bb1c30c51b4f4c4f2a2}{select\+Tutor\+I\+D()}} first \begin{DoxyReturn}{Returns}
+\$reservation\+Query will be assigned the resulting query 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_a917e4fb0b95699badf69324e683ef2f9}\label{_tutor___selection_8class_8php_a917e4fb0b95699badf69324e683ef2f9}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!printAvailableTutors@{printAvailableTutors}}
+\index{printAvailableTutors@{printAvailableTutors}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{printAvailableTutors()}{printAvailableTutors()}}
+{\footnotesize\ttfamily print\+Available\+Tutors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will print a listgroup of all the available tutors by their subject. Must call \mbox{\hyperlink{_tutor___selection_8class_8php_a82ba4a18d02d84b563e0ed644c4a846e}{get\+Available\+Tutors()}} first \begin{DoxyReturn}{Returns}
+Will return an accordion list group of subjects containing the tutors who specialize in those subjects. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_a8d1cd85c5c7884b46ddce6e94f0bc585}\label{_tutor___selection_8class_8php_a8d1cd85c5c7884b46ddce6e94f0bc585}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!printTutorReservationStatus@{printTutorReservationStatus}}
+\index{printTutorReservationStatus@{printTutorReservationStatus}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{printTutorReservationStatus()}{printTutorReservationStatus()}}
+{\footnotesize\ttfamily print\+Tutor\+Reservation\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will return a string containing the tutor confirmation information for a specified reservation. Must call \mbox{\hyperlink{_tutor___selection_8class_8php_aa55c439250d7b602d25701d20080575c}{get\+Tutor\+Reservation\+Info()}} first \begin{DoxyReturn}{Returns}
+A string of html will be returned depending on what Tutor\+Confirmation is equal to. 0 results in a simple \char`\"{}\+Add Tutor\char`\"{} button. 1 results in \char`\"{}(\+Tutor Name) has confirmed\char`\"{} string. 2 results in \char`\"{}\+T\+U\+T\+O\+R C\+A\+N\+C\+E\+L\+L\+E\+D -\/ A\+D\+D A N\+E\+W O\+N\+E\char`\"{} button. 3 results in \char`\"{}\+Waiting for (\+Tutor\textquotesingle{}s Name) to confirm\char`\"{} string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_a78fc1624ae4a44a300484ac00e0b9a96}\label{_tutor___selection_8class_8php_a78fc1624ae4a44a300484ac00e0b9a96}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!selectReservationID@{selectReservationID}}
+\index{selectReservationID@{selectReservationID}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectReservationID()}{selectReservationID()}}
+{\footnotesize\ttfamily select\+Reservation\+ID (\begin{DoxyParamCaption}\item[{}]{\$r }\end{DoxyParamCaption})}
+
+This function is used for selecting the reservation\+ID to be used in various functions within the class 
+\begin{DoxyParams}{Parameters}
+{\em \$r} & The variable will be an id string that correlates with an id in the reservation table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$reservation\+ID will be assigned as \$r. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_abd658239b3f73bb1c30c51b4f4c4f2a2}\label{_tutor___selection_8class_8php_abd658239b3f73bb1c30c51b4f4c4f2a2}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!selectTutorID@{selectTutorID}}
+\index{selectTutorID@{selectTutorID}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectTutorID()}{selectTutorID()}}
+{\footnotesize\ttfamily select\+Tutor\+ID (\begin{DoxyParamCaption}\item[{}]{\$t }\end{DoxyParamCaption})}
+
+This function is used selecting a tutor for the various functions in this class 
+\begin{DoxyParams}{Parameters}
+{\em \$t} & This is the id string that correlates with an id in the tutor table. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$tutor\+ID will be assigned as \$t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_abe3cd5bb61d47a195d45d6f2dd6477c6}\label{_tutor___selection_8class_8php_abe3cd5bb61d47a195d45d6f2dd6477c6}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!selectUserID@{selectUserID}}
+\index{selectUserID@{selectUserID}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectUserID()}{selectUserID()}}
+{\footnotesize\ttfamily select\+User\+ID (\begin{DoxyParamCaption}\item[{}]{\$u }\end{DoxyParamCaption})}
+
+This function is used for selecting the userid of the user so they cannot be listed as a available tutor for themselves. 
+\begin{DoxyParams}{Parameters}
+{\em \$u} & The variable will be a id string that correlates with an id in the users table. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$user\+ID will be assigned as \$u. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_ac3d759ab05a37faccd599d582b1eccda}\label{_tutor___selection_8class_8php_ac3d759ab05a37faccd599d582b1eccda}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!tutorConfirmationWidget@{tutorConfirmationWidget}}
+\index{tutorConfirmationWidget@{tutorConfirmationWidget}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{tutorConfirmationWidget()}{tutorConfirmationWidget()}}
+{\footnotesize\ttfamily tutor\+Confirmation\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will return an H\+T\+ML string containing every tutor reservation the tutor is apart of. If it is confirmed, it will simply say C\+O\+N\+F\+I\+R\+M\+ED. If it is pending, it will allow the tutor to accept or deny the appointment. Must call \mbox{\hyperlink{_tutor___selection_8class_8php_a8297068ed77f57ec6bd722bdffda73b4}{get\+Tutor\+Reservations()}} first \begin{DoxyReturn}{Returns}
+A string containing html will be returned with reservations either confirmed or pending and in need of response. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_tutor___selection_8class_8php_ae781e26d5acd9bf768dc9600a970f35e}\label{_tutor___selection_8class_8php_ae781e26d5acd9bf768dc9600a970f35e}} 
+\index{Tutor\_Selection.class.php@{Tutor\_Selection.class.php}!Tutor\_Selection@{Tutor\_Selection}}
+\index{Tutor\_Selection@{Tutor\_Selection}!Tutor\_Selection.class.php@{Tutor\_Selection.class.php}}
+\subsubsection{\texorpdfstring{Tutor\_Selection}{Tutor\_Selection}}
+{\footnotesize\ttfamily Class Tutor\+\_\+\+Selection}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \$userID}
+
+\end{DoxyCode}

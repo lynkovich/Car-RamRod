@@ -1,0 +1,189 @@
+\hypertarget{_pickup___order___selection_8class_8php}{}\section{classes/\+Pickup\+\_\+\+Order\+\_\+\+Selection.class.\+php File Reference}
+\label{_pickup___order___selection_8class_8php}\index{classes/Pickup\_Order\_Selection.class.php@{classes/Pickup\_Order\_Selection.class.php}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_afea91457e1886d995f1a6de7439ceaeb}{get\+Receipt\+Queries}} ()
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_a3b05a1e41412a6594da4671a32eb73cd}{print\+Receipt}} ()
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_ad9a4c0f627cd2a6db20fe86395ba89eb}{get\+Pick\+Up\+Menu}} ()
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_a59933fbd264fc2a62d9a74e50ebb98fd}{print\+Pickup\+Menu}} ()
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_ab30920ac61f282a414092277587a25a1}{select\+Items}} (\$k, \$v)
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_a8479e007f854c94229714a8425c5b6c0}{select\+Total}} (\$t)
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_aa3d29d516196eed16f5553dd20b8011e}{select\+Student}} (\$s)
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_ad8c931daea4616337e35d0add407efa0}{select\+Order\+ID}} (\$i)
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_a6481f7053a635ccc85738d41bc186de2}{select\+Date\+Time}} (\$d, \$t)
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_a539ea0c001b23b8d52ffadcec3bc3174}{confirm\+Purchase}} ()
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_a610ed5203a0a81eb865c12a6ce45f5b8}{get\+Pick\+Up\+Orders}} ()
+\item 
+\mbox{\hyperlink{_pickup___order___selection_8class_8php_a5cb8f6b7424fd9b9178daeaf22b9d31f}{pickup\+Orders\+Widget}} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Class \mbox{\hyperlink{_pickup___order___selection_8class_8php_a97cbe643c0895109f345f68609533958}{Pickup\+\_\+\+Order\+\_\+\+Selection}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_a539ea0c001b23b8d52ffadcec3bc3174}\label{_pickup___order___selection_8class_8php_a539ea0c001b23b8d52ffadcec3bc3174}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!confirmPurchase@{confirmPurchase}}
+\index{confirmPurchase@{confirmPurchase}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{confirmPurchase()}{confirmPurchase()}}
+{\footnotesize\ttfamily confirm\+Purchase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The function is used to submit the pickup order into the database. Must call \mbox{\hyperlink{_pickup___order___selection_8class_8php_aa3d29d516196eed16f5553dd20b8011e}{select\+Student()}}, \mbox{\hyperlink{_pickup___order___selection_8class_8php_a8479e007f854c94229714a8425c5b6c0}{select\+Total()}}, \mbox{\hyperlink{_pickup___order___selection_8class_8php_a6481f7053a635ccc85738d41bc186de2}{select\+Date\+Time()}}, and \mbox{\hyperlink{_pickup___order___selection_8class_8php_ab30920ac61f282a414092277587a25a1}{select\+Items()}} first. \begin{DoxyReturn}{Returns}
+The pickup order will be submitted into pickuporders and orderitems. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_ad9a4c0f627cd2a6db20fe86395ba89eb}\label{_pickup___order___selection_8class_8php_ad9a4c0f627cd2a6db20fe86395ba89eb}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!getPickUpMenu@{getPickUpMenu}}
+\index{getPickUpMenu@{getPickUpMenu}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getPickUpMenu()}{getPickUpMenu()}}
+{\footnotesize\ttfamily get\+Pick\+Up\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Function runs two S\+QL queries used for producing the pickup menu. \begin{DoxyReturn}{Returns}
+pickup\+Menu\+Query array will be assigned the results of the multiple queries by catergory 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_a610ed5203a0a81eb865c12a6ce45f5b8}\label{_pickup___order___selection_8class_8php_a610ed5203a0a81eb865c12a6ce45f5b8}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!getPickUpOrders@{getPickUpOrders}}
+\index{getPickUpOrders@{getPickUpOrders}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getPickUpOrders()}{getPickUpOrders()}}
+{\footnotesize\ttfamily get\+Pick\+Up\+Orders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will perform the query for the pickup orders of the current user. Must call \mbox{\hyperlink{_pickup___order___selection_8class_8php_aa3d29d516196eed16f5553dd20b8011e}{select\+Student()}} first \begin{DoxyReturn}{Returns}
+The \$order\+Query will be assigned the query result array. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_afea91457e1886d995f1a6de7439ceaeb}\label{_pickup___order___selection_8class_8php_afea91457e1886d995f1a6de7439ceaeb}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!getReceiptQueries@{getReceiptQueries}}
+\index{getReceiptQueries@{getReceiptQueries}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getReceiptQueries()}{getReceiptQueries()}}
+{\footnotesize\ttfamily get\+Receipt\+Queries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Function runs two S\+QL queries used for producing an order receipt. Must call \mbox{\hyperlink{_pickup___order___selection_8class_8php_ad8c931daea4616337e35d0add407efa0}{select\+Order\+I\+D()}} first \begin{DoxyReturn}{Returns}
+\$items\+Query and \$total\+Price\+Query are assigned the according query results 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_a5cb8f6b7424fd9b9178daeaf22b9d31f}\label{_pickup___order___selection_8class_8php_a5cb8f6b7424fd9b9178daeaf22b9d31f}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!pickupOrdersWidget@{pickupOrdersWidget}}
+\index{pickupOrdersWidget@{pickupOrdersWidget}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{pickupOrdersWidget()}{pickupOrdersWidget()}}
+{\footnotesize\ttfamily pickup\+Orders\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will return a widget that displays future order for a person and modal that displays the receipt Must call \mbox{\hyperlink{_pickup___order___selection_8class_8php_a610ed5203a0a81eb865c12a6ce45f5b8}{get\+Pick\+Up\+Orders()}} first \begin{DoxyReturn}{Returns}
+Return H\+T\+ML with each future food pickup order and a receipt within a modal for each 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_a59933fbd264fc2a62d9a74e50ebb98fd}\label{_pickup___order___selection_8class_8php_a59933fbd264fc2a62d9a74e50ebb98fd}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!printPickupMenu@{printPickupMenu}}
+\index{printPickupMenu@{printPickupMenu}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{printPickupMenu()}{printPickupMenu()}}
+{\footnotesize\ttfamily print\+Pickup\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will produce the H\+T\+ML for the Pickup Menu using the \$pickup\+Menu\+Query array. Must call get\+Pickup\+Menu() first. \begin{DoxyReturn}{Returns}
+string of html for the Pickup Menu 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_a3b05a1e41412a6594da4671a32eb73cd}\label{_pickup___order___selection_8class_8php_a3b05a1e41412a6594da4671a32eb73cd}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!printReceipt@{printReceipt}}
+\index{printReceipt@{printReceipt}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{printReceipt()}{printReceipt()}}
+{\footnotesize\ttfamily print\+Receipt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will produce the H\+T\+ML for a receipt using \$items\+Query and \$total\+Price\+Query. Must call \mbox{\hyperlink{_pickup___order___selection_8class_8php_afea91457e1886d995f1a6de7439ceaeb}{get\+Receipt\+Queries()}} first \begin{DoxyReturn}{Returns}
+string of html for the receipt modal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_a6481f7053a635ccc85738d41bc186de2}\label{_pickup___order___selection_8class_8php_a6481f7053a635ccc85738d41bc186de2}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!selectDateTime@{selectDateTime}}
+\index{selectDateTime@{selectDateTime}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectDateTime()}{selectDateTime()}}
+{\footnotesize\ttfamily select\+Date\+Time (\begin{DoxyParamCaption}\item[{}]{\$d,  }\item[{}]{\$t }\end{DoxyParamCaption})}
+
+This function is used for selecting the date\+Time to be used as the Order pickup time with \mbox{\hyperlink{_pickup___order___selection_8class_8php_a539ea0c001b23b8d52ffadcec3bc3174}{confirm\+Purchase()}} function. 
+\begin{DoxyParams}{Parameters}
+{\em \$d} & This is the value for the date of the Pickup Order \\
+\hline
+{\em \$t} & This is the value for the time of the Pickup Order \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \$date\+Time variable is assigned the date\+Time of the Pickup Order 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_ab30920ac61f282a414092277587a25a1}\label{_pickup___order___selection_8class_8php_ab30920ac61f282a414092277587a25a1}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!selectItems@{selectItems}}
+\index{selectItems@{selectItems}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectItems()}{selectItems()}}
+{\footnotesize\ttfamily select\+Items (\begin{DoxyParamCaption}\item[{}]{\$k,  }\item[{}]{\$v }\end{DoxyParamCaption})}
+
+This function is used for adding items and quantites to the order. 
+\begin{DoxyParams}{Parameters}
+{\em \$k} & This is used as the key for the array. It should correlate with the ID of an item from the menu. \\
+\hline
+{\em \$v} & This is used as the value for the array. It should correlate with the quantity of the item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An item id and its quantity will be added to the \$items array. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_ad8c931daea4616337e35d0add407efa0}\label{_pickup___order___selection_8class_8php_ad8c931daea4616337e35d0add407efa0}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!selectOrderID@{selectOrderID}}
+\index{selectOrderID@{selectOrderID}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectOrderID()}{selectOrderID()}}
+{\footnotesize\ttfamily select\+Order\+ID (\begin{DoxyParamCaption}\item[{}]{\$i }\end{DoxyParamCaption})}
+
+This function is used for selecting the Order ID to be used with the get\+Receipt\+Queries 
+\begin{DoxyParams}{Parameters}
+{\em \$i} & This is the value to be used as the order id for producing a receipt. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$order\+ID will be assigned the value of \$i 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_aa3d29d516196eed16f5553dd20b8011e}\label{_pickup___order___selection_8class_8php_aa3d29d516196eed16f5553dd20b8011e}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!selectStudent@{selectStudent}}
+\index{selectStudent@{selectStudent}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectStudent()}{selectStudent()}}
+{\footnotesize\ttfamily select\+Student (\begin{DoxyParamCaption}\item[{}]{\$s }\end{DoxyParamCaption})}
+
+This function is used for assigning 
+\begin{DoxyParams}{Parameters}
+{\em \$t} & This is the value to be used as the total price of an order. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$total\+Price will be assigned the value of \$t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_a8479e007f854c94229714a8425c5b6c0}\label{_pickup___order___selection_8class_8php_a8479e007f854c94229714a8425c5b6c0}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!selectTotal@{selectTotal}}
+\index{selectTotal@{selectTotal}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectTotal()}{selectTotal()}}
+{\footnotesize\ttfamily select\+Total (\begin{DoxyParamCaption}\item[{}]{\$t }\end{DoxyParamCaption})}
+
+This function is used for adding the total price to an order. 
+\begin{DoxyParams}{Parameters}
+{\em \$t} & This is the value to be used as the total price of an order. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$total\+Price will be assigned the value of \$t 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_pickup___order___selection_8class_8php_a97cbe643c0895109f345f68609533958}\label{_pickup___order___selection_8class_8php_a97cbe643c0895109f345f68609533958}} 
+\index{Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}!Pickup\_Order\_Selection@{Pickup\_Order\_Selection}}
+\index{Pickup\_Order\_Selection@{Pickup\_Order\_Selection}!Pickup\_Order\_Selection.class.php@{Pickup\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{Pickup\_Order\_Selection}{Pickup\_Order\_Selection}}
+{\footnotesize\ttfamily Class Pickup\+\_\+\+Order\+\_\+\+Selection}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \$items = array()}
+
+\end{DoxyCode}

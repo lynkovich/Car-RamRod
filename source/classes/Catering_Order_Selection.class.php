@@ -10,8 +10,12 @@ Class Catering_Order_Selection
 	private $itemsQuery;
 
 
-
-	function getReceiptQueries()
+	/**
+	 * Function runs two SQL queries used for producing an order receipt.
+	 * Must call selectOrderID() first
+	 * @result $itemsQuery and $totalPriceQuery are assigned the according query results
+	 */
+	public function getReceiptQueries()
 	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -34,7 +38,12 @@ Class Catering_Order_Selection
 
 	}
 
-	function printReceipt()
+	/**
+	 * This function will produce the HTML for a receipt using $itemsQuery and $totalPriceQuery.
+	 * Must call getReceiptQueries() first
+	 * @return string of html for the receipt modal
+	 */
+	public function printReceipt()
 	{
 		$returnstring = "<a data-toggle='modal' href='#receiptModal'>View #".$this->orderID." Receipt</a>";
 		$returnstring = $returnstring."	<div id='receiptModal' class='modal fade' role='dialog'>
@@ -64,7 +73,11 @@ Class Catering_Order_Selection
 
 	}
 
-	function getCateringMenu()
+	/**
+	 * Function runs two SQL queries used for producing the catering menu.
+	 * @result caterMenuQuery array will be assigned the results of the multiple queries by catergory
+	 */
+	public function getCateringMenu()
 	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -94,7 +107,13 @@ Class Catering_Order_Selection
 		}
 		$pdo = NULL;
 	}
-	function printCateringMenu()
+
+	/**
+	 * This function will produce the HTML for the Catering Menu using the $caterMenuQuery array.
+	 * Must call getCateringMenu() first.
+	 * @return string of html for the Catering Menu
+	 */
+	public function printCateringMenu()
 	{
 		$i = 1000;
 		$returnstring = "<h4>Menu: </h4><div id='accordion'>";
@@ -140,23 +159,45 @@ Class Catering_Order_Selection
 
 		return $returnstring .= "</div>";
 	}
-	//This function will use the items added and total amount placed into the object created by Add_Item to check out and pay for those items
-	function selectItems($k, $v)
+
+	/**
+	 * This function is used for adding items and quantites to the order.
+	 * @param   $k This is used as the key for the array. It should correlate with the ID of an item from the menu.
+	 * @param   $v This is used as the value for the array. It should correlate with the quantity of the item.
+	 * @result An item id and its quantity will be added to the $items array.
+	 */
+	public function selectItems($k, $v)
 	{
 		$this->items[$k] = $v;
 	}
 
-	function selectTotal($t)
+	/**
+	 * This function is used for adding the total price to an order.
+	 * @param   $t This is the value to be used as the total price of an order.
+	 * @result $totalPrice will be assigned the value of $t
+	 */
+	public function selectTotal($t)
 	{
 		$this->totalPrice = $t;
 	}
 
-	function selectOrderID($i)
+	/**
+	 * This function is used for selecting the Order ID to be used with the getReceiptQueries
+	 * @param   $i This is the value to be used as the order id for producing a receipt.
+	 * @result $orderID will be assigned the value of $i
+	 *  
+	 */
+	public function selectOrderID($i)
 	{
 		$this->orderID = $i;
 	}
 
-	function confirmPurchase()
+	/**
+	 * This function is used for inserting an order into the database.
+	 * Must call selectItems() and selectTotal() first.
+	 * @result Each item from the $items array is in inserted into caterorderitems table and the $totalPrice is inserted into cateringorder. The order id is inserted into the reservation table.
+	 */
+	public function confirmPurchase()
 	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);

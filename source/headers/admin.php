@@ -13,10 +13,13 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Modify Reservation</a>
+        <a class="nav-link" href="DeleteReservation.php">Remove Reservation</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Modify Menu</a>
+        <a class="nav-link" href="UpdateMenu.php">Modify Catering Menu</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="UpdatePickupMenu.php">Modify Pickup Menu</a>
       </li>
 	  </ul>
 	  <ul class="navbar-nav">

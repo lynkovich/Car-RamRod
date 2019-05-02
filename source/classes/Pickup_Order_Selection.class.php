@@ -13,7 +13,11 @@ Class Pickup_Order_Selection
 	private $orderQuery;
 
 
-
+	/**
+	 * Function runs two SQL queries used for producing an order receipt.
+	 * Must call selectOrderID() first
+	 * @result $itemsQuery and $totalPriceQuery are assigned the according query results
+	 */
 	function getReceiptQueries()
 	{
 		try {
@@ -37,6 +41,11 @@ Class Pickup_Order_Selection
 
 	}
 
+	/**
+	 * This function will produce the HTML for a receipt using $itemsQuery and $totalPriceQuery.
+	 * Must call getReceiptQueries() first
+	 * @return string of html for the receipt modal
+	 */
 	function printReceipt()
 	{
 		$returnstring = "<a data-toggle='modal' href='#my".$this->orderID."receiptModal'>View #".$this->orderID." Receipt</a>";
@@ -66,6 +75,10 @@ Class Pickup_Order_Selection
 
 	}
 
+	/**
+	 * Function runs two SQL queries used for producing the pickup menu.
+	 * @result pickupMenuQuery array will be assigned the results of the multiple queries by catergory
+	 */
 	function getPickUpMenu()
 	{
 		try {
@@ -96,6 +109,12 @@ Class Pickup_Order_Selection
 		}
 		$pdo = NULL;
 	}
+
+	/**
+	 * This function will produce the HTML for the Pickup Menu using the $pickupMenuQuery array.
+	 * Must call getPickupMenu() first.
+	 * @return string of html for the Pickup Menu
+	 */
 	function printPickupMenu()
 	{
 		$returnstring = "<h4>Menu: </h4><div id='accordion'>";
@@ -136,38 +155,70 @@ Class Pickup_Order_Selection
 		}
 		$returnstring .= "</ul></div></div></div>";
 
-	}
+		}
 		
 
 		return $returnstring."</div>";
 	}
-	//This function will use the items added and total amount placed into the object created by Add_Item to check out and pay for those items
+	
+	/**
+	 * This function is used for adding items and quantites to the order.
+	 * @param   $k This is used as the key for the array. It should correlate with the ID of an item from the menu.
+	 * @param   $v This is used as the value for the array. It should correlate with the quantity of the item.
+	 * @result An item id and its quantity will be added to the $items array.
+	 */
 	function selectItems($k, $v)
 	{
 		$this->items[$k] = $v;
 	}
 
+	/**
+	 * This function is used for adding the total price to an order.
+	 * @param   $t This is the value to be used as the total price of an order.
+	 * @result $totalPrice will be assigned the value of $t
+	 */
 	function selectTotal($t)
 	{
 		$this->totalPrice = $t;
 	}
 
+	/**
+	 * This function is used for assigning
+	 * @param   $t This is the value to be used as the total price of an order.
+	 * @result $totalPrice will be assigned the value of $t
+	 */
 	function selectStudent($s)
 	{
 		$this->studentID = $s;
 	}
 
-
+	/**
+	 * This function is used for selecting the Order ID to be used with the getReceiptQueries
+	 * @param   $i This is the value to be used as the order id for producing a receipt.
+	 * @result $orderID will be assigned the value of $i
+	 *  
+	 */
 	function selectOrderID($i)
 	{
 		$this->orderID = $i;
 	}
 
+	/**
+	 * This function is used for selecting the dateTime to be used as the Order pickup time with confirmPurchase() function.
+	 * @param  $d This is the value for the date of the Pickup Order
+	 * @param  $t This is the value for the time of the Pickup Order
+	 * @result The $dateTime variable is assigned the dateTime of the Pickup Order 
+	 */
 	function selectDateTime($d, $t)
 	{
 		$this->dateTime = $d." ".$t;
 	}
 
+	/**
+	 * The function is used to submit the pickup order into the database.
+	 * Must call selectStudent(), selectTotal(), selectDateTime(), and selectItems() first.
+	 * @result The pickup order will be submitted into pickuporders and orderitems.
+	 */
 	function confirmPurchase()
 	{
 		try {
@@ -207,6 +258,11 @@ Class Pickup_Order_Selection
 		}
 	}
 
+	/**
+	 * This function will perform the query for the pickup orders of the current user.
+	 * Must call selectStudent() first
+	 * @result The $orderQuery will be assigned the query result array.
+	 */ 
 	function getPickUpOrders(){
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -224,6 +280,11 @@ Class Pickup_Order_Selection
 		}
 	}
 
+	/**
+	 * This function will return a widget that displays future order for a person and modal that displays the receipt
+	 * Must call getPickUpOrders() first
+	 * @return   Return HTML with each future food pickup order and a receipt within a modal for each
+	 */ 
 	function pickupOrdersWidget()
 	{
 		$returnstring =  "<div class='card'>

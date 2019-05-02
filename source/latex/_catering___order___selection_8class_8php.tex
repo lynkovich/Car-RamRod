@@ -1,0 +1,133 @@
+\hypertarget{_catering___order___selection_8class_8php}{}\section{classes/\+Catering\+\_\+\+Order\+\_\+\+Selection.class.\+php File Reference}
+\label{_catering___order___selection_8class_8php}\index{classes/Catering\_Order\_Selection.class.php@{classes/Catering\_Order\_Selection.class.php}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_catering___order___selection_8class_8php_afea91457e1886d995f1a6de7439ceaeb}{get\+Receipt\+Queries}} ()
+\item 
+\mbox{\hyperlink{_catering___order___selection_8class_8php_a3b05a1e41412a6594da4671a32eb73cd}{print\+Receipt}} ()
+\item 
+\mbox{\hyperlink{_catering___order___selection_8class_8php_a556c7043d3b316ccab6e46f531abec7f}{get\+Catering\+Menu}} ()
+\item 
+\mbox{\hyperlink{_catering___order___selection_8class_8php_a5ecee293792f53af2de419b50195e5fd}{print\+Catering\+Menu}} ()
+\item 
+\mbox{\hyperlink{_catering___order___selection_8class_8php_ab30920ac61f282a414092277587a25a1}{select\+Items}} (\$k, \$v)
+\item 
+\mbox{\hyperlink{_catering___order___selection_8class_8php_a8479e007f854c94229714a8425c5b6c0}{select\+Total}} (\$t)
+\item 
+\mbox{\hyperlink{_catering___order___selection_8class_8php_ad8c931daea4616337e35d0add407efa0}{select\+Order\+ID}} (\$i)
+\item 
+\mbox{\hyperlink{_catering___order___selection_8class_8php_a539ea0c001b23b8d52ffadcec3bc3174}{confirm\+Purchase}} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Class \mbox{\hyperlink{_catering___order___selection_8class_8php_aebb6021aa7a5316a9d74c95e0314bd1e}{Catering\+\_\+\+Order\+\_\+\+Selection}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_a539ea0c001b23b8d52ffadcec3bc3174}\label{_catering___order___selection_8class_8php_a539ea0c001b23b8d52ffadcec3bc3174}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!confirmPurchase@{confirmPurchase}}
+\index{confirmPurchase@{confirmPurchase}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{confirmPurchase()}{confirmPurchase()}}
+{\footnotesize\ttfamily confirm\+Purchase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function is used for inserting an order into the database. Must call \mbox{\hyperlink{_catering___order___selection_8class_8php_ab30920ac61f282a414092277587a25a1}{select\+Items()}} and \mbox{\hyperlink{_catering___order___selection_8class_8php_a8479e007f854c94229714a8425c5b6c0}{select\+Total()}} first. \begin{DoxyReturn}{Returns}
+Each item from the \$items array is in inserted into caterorderitems table and the \$total\+Price is inserted into cateringorder. The order id is inserted into the reservation table. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_a556c7043d3b316ccab6e46f531abec7f}\label{_catering___order___selection_8class_8php_a556c7043d3b316ccab6e46f531abec7f}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!getCateringMenu@{getCateringMenu}}
+\index{getCateringMenu@{getCateringMenu}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getCateringMenu()}{getCateringMenu()}}
+{\footnotesize\ttfamily get\+Catering\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Function runs two S\+QL queries used for producing the catering menu. \begin{DoxyReturn}{Returns}
+cater\+Menu\+Query array will be assigned the results of the multiple queries by catergory 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_afea91457e1886d995f1a6de7439ceaeb}\label{_catering___order___selection_8class_8php_afea91457e1886d995f1a6de7439ceaeb}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!getReceiptQueries@{getReceiptQueries}}
+\index{getReceiptQueries@{getReceiptQueries}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getReceiptQueries()}{getReceiptQueries()}}
+{\footnotesize\ttfamily get\+Receipt\+Queries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Function runs two S\+QL queries used for producing an order receipt. Must call \mbox{\hyperlink{_catering___order___selection_8class_8php_ad8c931daea4616337e35d0add407efa0}{select\+Order\+I\+D()}} first \begin{DoxyReturn}{Returns}
+\$items\+Query and \$total\+Price\+Query are assigned the according query results 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_a5ecee293792f53af2de419b50195e5fd}\label{_catering___order___selection_8class_8php_a5ecee293792f53af2de419b50195e5fd}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!printCateringMenu@{printCateringMenu}}
+\index{printCateringMenu@{printCateringMenu}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{printCateringMenu()}{printCateringMenu()}}
+{\footnotesize\ttfamily print\+Catering\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will produce the H\+T\+ML for the Catering Menu using the \$cater\+Menu\+Query array. Must call \mbox{\hyperlink{_catering___order___selection_8class_8php_a556c7043d3b316ccab6e46f531abec7f}{get\+Catering\+Menu()}} first. \begin{DoxyReturn}{Returns}
+string of html for the Catering Menu 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_a3b05a1e41412a6594da4671a32eb73cd}\label{_catering___order___selection_8class_8php_a3b05a1e41412a6594da4671a32eb73cd}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!printReceipt@{printReceipt}}
+\index{printReceipt@{printReceipt}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{printReceipt()}{printReceipt()}}
+{\footnotesize\ttfamily print\+Receipt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will produce the H\+T\+ML for a receipt using \$items\+Query and \$total\+Price\+Query. Must call \mbox{\hyperlink{_catering___order___selection_8class_8php_afea91457e1886d995f1a6de7439ceaeb}{get\+Receipt\+Queries()}} first \begin{DoxyReturn}{Returns}
+string of html for the receipt modal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_ab30920ac61f282a414092277587a25a1}\label{_catering___order___selection_8class_8php_ab30920ac61f282a414092277587a25a1}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!selectItems@{selectItems}}
+\index{selectItems@{selectItems}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectItems()}{selectItems()}}
+{\footnotesize\ttfamily select\+Items (\begin{DoxyParamCaption}\item[{}]{\$k,  }\item[{}]{\$v }\end{DoxyParamCaption})}
+
+This function is used for adding items and quantites to the order. 
+\begin{DoxyParams}{Parameters}
+{\em \$k} & This is used as the key for the array. It should correlate with the ID of an item from the menu. \\
+\hline
+{\em \$v} & This is used as the value for the array. It should correlate with the quantity of the item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An item id and its quantity will be added to the \$items array. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_ad8c931daea4616337e35d0add407efa0}\label{_catering___order___selection_8class_8php_ad8c931daea4616337e35d0add407efa0}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!selectOrderID@{selectOrderID}}
+\index{selectOrderID@{selectOrderID}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectOrderID()}{selectOrderID()}}
+{\footnotesize\ttfamily select\+Order\+ID (\begin{DoxyParamCaption}\item[{}]{\$i }\end{DoxyParamCaption})}
+
+This function is used for selecting the Order ID to be used with the get\+Receipt\+Queries 
+\begin{DoxyParams}{Parameters}
+{\em \$i} & This is the value to be used as the order id for producing a receipt. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$order\+ID will be assigned the value of \$i 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_a8479e007f854c94229714a8425c5b6c0}\label{_catering___order___selection_8class_8php_a8479e007f854c94229714a8425c5b6c0}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!selectTotal@{selectTotal}}
+\index{selectTotal@{selectTotal}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{selectTotal()}{selectTotal()}}
+{\footnotesize\ttfamily select\+Total (\begin{DoxyParamCaption}\item[{}]{\$t }\end{DoxyParamCaption})}
+
+This function is used for adding the total price to an order. 
+\begin{DoxyParams}{Parameters}
+{\em \$t} & This is the value to be used as the total price of an order. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$total\+Price will be assigned the value of \$t 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_catering___order___selection_8class_8php_aebb6021aa7a5316a9d74c95e0314bd1e}\label{_catering___order___selection_8class_8php_aebb6021aa7a5316a9d74c95e0314bd1e}} 
+\index{Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}!Catering\_Order\_Selection@{Catering\_Order\_Selection}}
+\index{Catering\_Order\_Selection@{Catering\_Order\_Selection}!Catering\_Order\_Selection.class.php@{Catering\_Order\_Selection.class.php}}
+\subsubsection{\texorpdfstring{Catering\_Order\_Selection}{Catering\_Order\_Selection}}
+{\footnotesize\ttfamily Class Catering\+\_\+\+Order\+\_\+\+Selection}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \$items = array()}
+
+\end{DoxyCode}

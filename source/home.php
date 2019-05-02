@@ -17,14 +17,51 @@ $pickuporders = new Pickup_Order_Selection();?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="navcss.css">
 <script src="js/divupdate.js"></script>
+<script>
+$(document).ready(function(){
+  $("#tclick").click(function(){
+  	$("#tutor").show();
+    $("#room").hide();
+    $("#food").hide();
+	$("#div").load(" #div > *");
+  });
+  $("#rclick").click(function(){
+  	$("#tutor").hide();
+    $("#room").show();
+    $("#food").hide();
+	$("#div1").load(" #div1 > *");	
+  });
+	$("#fclick").click(function(){
+  	$("#tutor").hide();
+    $("#room").hide();
+    $("#food").show();
+	$("#div2").load(" #div2 > *");
+  });
+});
+</script>
+
 <style>
   ul.twocol {
     list-style-type: none;
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
   -moz-column-count: 2; /* Firefox */
   column-count: 2;
+}
+
+.notification {
+  color: black;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+}
+.badge {
+  font-size: 8pt;
+  border-radius: 50%;
+  background-color: #EBCE14;
+  color: #080986;
 }
 </style>
 </head>
@@ -41,7 +78,7 @@ $pickuporders = new Pickup_Order_Selection();?>
   unset($_SESSION['cateringID']);
   if($_SESSION['login_type'] == 'Admin'){
 	 include 'headers/admin.php';
-	 
+	 include 'side/admin.php';
 	}
   else if($_SESSION['login_type'] == 'Student'){
 	  include 'headers/student.php';
@@ -49,10 +86,8 @@ $pickuporders = new Pickup_Order_Selection();?>
 	}
   else if($_SESSION['login_type'] == 'Faculty'){
 	  include 'headers/faculty.php';
-	if($_SESSION['istutor'] == true){ $tutoring->selectTutorID($_SESSION['login_user']);
-        $tutoring->getTutorReservations();
-        echo $tutoring->tutorConfirmationWidget();}  
-	} 
+	  include 'side/faculty.php';
+  }
 
   ?>
 	

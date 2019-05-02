@@ -1,0 +1,196 @@
+\hypertarget{_room___selection_8class_8php}{}\section{classes/\+Room\+\_\+\+Selection.class.\+php File Reference}
+\label{_room___selection_8class_8php}\index{classes/Room\_Selection.class.php@{classes/Room\_Selection.class.php}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a1014e84155fb117997cf11fcab3c3d22}{Select\+Student\+ID}} (\$s)
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a844d4eb0022335945cf36729cbeee645}{Select\+Reservation\+ID}} (\$r)
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a76636000b94ea99486d48b0cf946430a}{Select\+Capacity}} (\$c)
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a15f7f352af1caf97b352f4db79d5c932}{Select\+Room}} (\$r)
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a2fa31ac8825981cc1c7b9e0ae2882b15}{Select\+Time\+With\+Form}} (\$d, \$s, \$f)
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a0df97fd941faa49c5932879ede080944}{Select\+Time\+With\+Cookie}} (\$s, \$f)
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a65dc1d8579dc730a5a4db6799c7fde4a}{Find\+Available\+Rooms}} ()
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_af4a06b6f962b7a3a2c23568743295670}{print\+Available\+Rooms}} ()
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a0e67cda8ce5c20c885c55a2b7eaf478c}{Confirm\+Room}} ()
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_ade932fe6af13dca6fad6841780807039}{get\+Room\+Reservations}} ()
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_a1459b40a236d0f61087f7b2e06b5cacf}{room\+Reservation\+Widget}} ()
+\item 
+\mbox{\hyperlink{_room___selection_8class_8php_aca5696df7c068ede3f87a7d8e26e8a6b}{set\+Additional\+Option\+Sessions}} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Class \mbox{\hyperlink{_room___selection_8class_8php_a6a9e0231c1dcb7e02782a437b45af63a}{Room\+\_\+\+Selection}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_room___selection_8class_8php_a0e67cda8ce5c20c885c55a2b7eaf478c}\label{_room___selection_8class_8php_a0e67cda8ce5c20c885c55a2b7eaf478c}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!ConfirmRoom@{ConfirmRoom}}
+\index{ConfirmRoom@{ConfirmRoom}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{ConfirmRoom()}{ConfirmRoom()}}
+{\footnotesize\ttfamily Confirm\+Room (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will enter the room reservation into the database. Must call \mbox{\hyperlink{_room___selection_8class_8php_a15f7f352af1caf97b352f4db79d5c932}{Select\+Room()}} and and \mbox{\hyperlink{_room___selection_8class_8php_a0df97fd941faa49c5932879ede080944}{Select\+Time\+With\+Cookie()}} first \begin{DoxyReturn}{Returns}
+This will insert a entry into the reservation table and then used the autoincremented key to insert the room\+Nummber, start\+Time, and finish\+Time into the roomscheduletable. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_a65dc1d8579dc730a5a4db6799c7fde4a}\label{_room___selection_8class_8php_a65dc1d8579dc730a5a4db6799c7fde4a}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!FindAvailableRooms@{FindAvailableRooms}}
+\index{FindAvailableRooms@{FindAvailableRooms}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{FindAvailableRooms()}{FindAvailableRooms()}}
+{\footnotesize\ttfamily Find\+Available\+Rooms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will run the query for rooms that match criteria of the start time, end time, and capacity of the room. Must call \mbox{\hyperlink{_room___selection_8class_8php_a76636000b94ea99486d48b0cf946430a}{Select\+Capacity()}}. Also must call either \mbox{\hyperlink{_room___selection_8class_8php_a2fa31ac8825981cc1c7b9e0ae2882b15}{Select\+Time\+With\+Form()}} or \mbox{\hyperlink{_room___selection_8class_8php_a0df97fd941faa49c5932879ede080944}{Select\+Time\+With\+Cookie()}}. \begin{DoxyReturn}{Returns}
+The function will see \$available\+Room\+Query to query result. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_ade932fe6af13dca6fad6841780807039}\label{_room___selection_8class_8php_ade932fe6af13dca6fad6841780807039}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!getRoomReservations@{getRoomReservations}}
+\index{getRoomReservations@{getRoomReservations}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{getRoomReservations()}{getRoomReservations()}}
+{\footnotesize\ttfamily get\+Room\+Reservations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function runs a query to see what reservations a user has made that haven\textquotesingle{}t happened yet. Must call \mbox{\hyperlink{_room___selection_8class_8php_a1014e84155fb117997cf11fcab3c3d22}{Select\+Student\+I\+D()}} first \begin{DoxyReturn}{Returns}
+The resulting query will be assigned to \$reservation\+Query 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_af4a06b6f962b7a3a2c23568743295670}\label{_room___selection_8class_8php_af4a06b6f962b7a3a2c23568743295670}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!printAvailableRooms@{printAvailableRooms}}
+\index{printAvailableRooms@{printAvailableRooms}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{printAvailableRooms()}{printAvailableRooms()}}
+{\footnotesize\ttfamily print\+Available\+Rooms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function will print a list of rooms given by \$available\+Room\+Query. Must call \mbox{\hyperlink{_room___selection_8class_8php_a65dc1d8579dc730a5a4db6799c7fde4a}{Find\+Available\+Rooms()}} first. \begin{DoxyReturn}{Returns}
+A boostrap listgroup of the available rooms. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_a1459b40a236d0f61087f7b2e06b5cacf}\label{_room___selection_8class_8php_a1459b40a236d0f61087f7b2e06b5cacf}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!roomReservationWidget@{roomReservationWidget}}
+\index{roomReservationWidget@{roomReservationWidget}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{roomReservationWidget()}{roomReservationWidget()}}
+{\footnotesize\ttfamily room\+Reservation\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This functions prints info about every reservation that hasn\textquotesingle{}t finished or started. Must call \mbox{\hyperlink{_room___selection_8class_8php_ade932fe6af13dca6fad6841780807039}{get\+Room\+Reservations()}} first \begin{DoxyReturn}{Returns}
+returns a widget with study room id, start time, finish time and a link to additional options for each reservation after the current time. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_a76636000b94ea99486d48b0cf946430a}\label{_room___selection_8class_8php_a76636000b94ea99486d48b0cf946430a}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!SelectCapacity@{SelectCapacity}}
+\index{SelectCapacity@{SelectCapacity}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{SelectCapacity()}{SelectCapacity()}}
+{\footnotesize\ttfamily Select\+Capacity (\begin{DoxyParamCaption}\item[{}]{\$c }\end{DoxyParamCaption})}
+
+This function is used for selecting the capacity of the room needed for a room reservation. 
+\begin{DoxyParams}{Parameters}
+{\em \$c} & This value will need to be a int that is less than or equal to the capacity of the largest room \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$capacity will be assigned the value \$c 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_a844d4eb0022335945cf36729cbeee645}\label{_room___selection_8class_8php_a844d4eb0022335945cf36729cbeee645}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!SelectReservationID@{SelectReservationID}}
+\index{SelectReservationID@{SelectReservationID}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{SelectReservationID()}{SelectReservationID()}}
+{\footnotesize\ttfamily Select\+Reservation\+ID (\begin{DoxyParamCaption}\item[{}]{\$r }\end{DoxyParamCaption})}
+
+This function is used for selecting the Reservation\+ID used to check the other options of the reservation. 
+\begin{DoxyParams}{Parameters}
+{\em \$r} & This variable should be a string that correlates with an id in the reservation table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$reservation\+ID is assigned the value \$r 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_a15f7f352af1caf97b352f4db79d5c932}\label{_room___selection_8class_8php_a15f7f352af1caf97b352f4db79d5c932}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!SelectRoom@{SelectRoom}}
+\index{SelectRoom@{SelectRoom}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{SelectRoom()}{SelectRoom()}}
+{\footnotesize\ttfamily Select\+Room (\begin{DoxyParamCaption}\item[{}]{\$r }\end{DoxyParamCaption})}
+
+This function assigns the id value for the room that will be booked 
+\begin{DoxyParams}{Parameters}
+{\em \$r} & The value is an int that correlates with one of the ids in the studyroom table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$room\+Number will assigned as \$r as well as a cookie. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_a1014e84155fb117997cf11fcab3c3d22}\label{_room___selection_8class_8php_a1014e84155fb117997cf11fcab3c3d22}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!SelectStudentID@{SelectStudentID}}
+\index{SelectStudentID@{SelectStudentID}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{SelectStudentID()}{SelectStudentID()}}
+{\footnotesize\ttfamily Select\+Student\+ID (\begin{DoxyParamCaption}\item[{}]{\$s }\end{DoxyParamCaption})}
+
+This function is used for selecting the Student ID 
+\begin{DoxyParams}{Parameters}
+{\em \$s} & This variable should be a string that correlates with a user id from users table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$student\+ID is assigned the value \$s 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_a0df97fd941faa49c5932879ede080944}\label{_room___selection_8class_8php_a0df97fd941faa49c5932879ede080944}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!SelectTimeWithCookie@{SelectTimeWithCookie}}
+\index{SelectTimeWithCookie@{SelectTimeWithCookie}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{SelectTimeWithCookie()}{SelectTimeWithCookie()}}
+{\footnotesize\ttfamily Select\+Time\+With\+Cookie (\begin{DoxyParamCaption}\item[{}]{\$s,  }\item[{}]{\$f }\end{DoxyParamCaption})}
+
+This function assigns the start\+Time and finish\+Time from date\+Time strings. 
+\begin{DoxyParams}{Parameters}
+{\em \$s} & This variable should be string in date\+Time form for the start time of the study room session \\
+\hline
+{\em \$f} & This variable should be string in date\+Time form for the finish time of the study room session \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$start\+Time will be assigned \$s and \$finish\+Time will be assigned \$f 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_a2fa31ac8825981cc1c7b9e0ae2882b15}\label{_room___selection_8class_8php_a2fa31ac8825981cc1c7b9e0ae2882b15}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!SelectTimeWithForm@{SelectTimeWithForm}}
+\index{SelectTimeWithForm@{SelectTimeWithForm}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{SelectTimeWithForm()}{SelectTimeWithForm()}}
+{\footnotesize\ttfamily Select\+Time\+With\+Form (\begin{DoxyParamCaption}\item[{}]{\$d,  }\item[{}]{\$s,  }\item[{}]{\$f }\end{DoxyParamCaption})}
+
+This function assigns the start\+Time and finish\+Time where the date and time variables are separate. 
+\begin{DoxyParams}{Parameters}
+{\em \$d} & This variable should be of the date string form correlating with the date you would like to book a room. \\
+\hline
+{\em \$s} & This variable should be of time form and correlates with the preferred start time of the study session. \\
+\hline
+{\em \$f} & This variable should be of time form and correlates with the preferred finish time of the study session. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$start\+Time and \$finish\+Time will be assigned strings of \$s and \$f concatenated with \$d. Cookies will also be assigned. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_room___selection_8class_8php_aca5696df7c068ede3f87a7d8e26e8a6b}\label{_room___selection_8class_8php_aca5696df7c068ede3f87a7d8e26e8a6b}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!setAdditionalOptionSessions@{setAdditionalOptionSessions}}
+\index{setAdditionalOptionSessions@{setAdditionalOptionSessions}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{setAdditionalOptionSessions()}{setAdditionalOptionSessions()}}
+{\footnotesize\ttfamily set\+Additional\+Option\+Sessions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Will run a query for the current reservation and get the ids of the tutor and catering order. Must run \mbox{\hyperlink{_room___selection_8class_8php_a844d4eb0022335945cf36729cbeee645}{Select\+Reservation\+I\+D()}} first. \begin{DoxyReturn}{Returns}
+\$\+\_\+\+S\+E\+S\+S\+I\+ON\mbox{[}\textquotesingle{}tutor\+ID\textquotesingle{}\mbox{]} and \$\+\_\+\+S\+E\+S\+S\+I\+ON\mbox{[}\textquotesingle{}catering\+ID\textquotesingle{}\mbox{]} will be assigned the corresponding ids in the reservation table if they exist. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_room___selection_8class_8php_a6a9e0231c1dcb7e02782a437b45af63a}\label{_room___selection_8class_8php_a6a9e0231c1dcb7e02782a437b45af63a}} 
+\index{Room\_Selection.class.php@{Room\_Selection.class.php}!Room\_Selection@{Room\_Selection}}
+\index{Room\_Selection@{Room\_Selection}!Room\_Selection.class.php@{Room\_Selection.class.php}}
+\subsubsection{\texorpdfstring{Room\_Selection}{Room\_Selection}}
+{\footnotesize\ttfamily Class Room\+\_\+\+Selection}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \$studentID}
+
+\end{DoxyCode}

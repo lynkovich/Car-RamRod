@@ -9,22 +9,43 @@ Class Tutor_Selection
 	private $reservationQuery;
 	private $singleReservationArray;
 
-	function selectUserID($u)
+
+	/**
+	 * This function is used for selecting the userid of the user so they cannot be listed as a available tutor for themselves.
+	 * @param   $u The variable will be a id string that correlates with an id in the users table.
+	 * @result $userID will be assigned as $u.
+	 */
+	public function selectUserID($u)
 	{
 		$this->userID = $u;
 	}
 
-	function selectTutorID($t)
+	/**
+	 * This function is used selecting a tutor for the various functions in this class
+	 * @param   $t This is the id string that correlates with an id in the tutor table.
+	 * @result $tutorID will be assigned as $t
+	 */
+	public function selectTutorID($t)
 	{
 		$this->tutorID = $t;
 	}
 
-	function selectReservationID($r)
+	/**
+	 * This function is used for selecting the reservationID to be used in various functions within the class
+	 * @param   $r The variable will be an id string that correlates with an id in the reservation table
+	 * @result $reservationID will be assigned as $r.
+	 */
+	public function selectReservationID($r)
 	{
 		$this->reservationID = $r;
 	}
 	
-	function getAvailableTutors()
+	/**
+	 * This function is used to run a query for all available tutors each by subject.
+	 * Must call selectTutorID() first to prevent the current user from appearing on the list
+	 * @result $tutorQuery array will contain query results with the key being the subject.
+	 */ 
+	public function getAvailableTutors()
 	{
 
 		try {
@@ -58,7 +79,12 @@ Class Tutor_Selection
 		}
 	}
 
-	function printAvailableTutors()
+	/**
+	 * This function will print a listgroup of all the available tutors by their subject.
+	 * Must call getAvailableTutors() first
+	 * @return  Will return an accordion list group of subjects containing the tutors who specialize in those subjects.
+	 */ 
+	public function printAvailableTutors()
 	{
 
     	$returnstring = "<h3>Click a subject to browse tutors:</h3><div id='accordion'>";
@@ -104,7 +130,12 @@ Class Tutor_Selection
 		return $returnstring."</div>";
 	}
 
-	function confirmTutorSelection()
+	/**
+	 * This function will insert the chosen tutor into the current reservation and make the status pending
+	 * Must call selectTutorID() first.
+	 * @result The function will insert $tutorID into the tutorid column in the reservation table and set TutorConfirmation to 3(pending)
+	 */ 
+	public function confirmTutorSelection()
 	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -127,7 +158,13 @@ Class Tutor_Selection
 		}
 	}
 
-	function getTutorReservations(){
+	/**
+	 * This function will run a query for all of the reservations a tutor is part of past the current time and date
+	 * Must call selectTutorID() first
+	 *  @result $reservationQuery will be assigned the resulting query
+ 	 */ 
+	public function getTutorReservations()
+	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
 		   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -144,7 +181,12 @@ Class Tutor_Selection
 		}
 	}
 
-	function tutorConfirmationWidget()
+	/**
+	 * This function will return an HTML string containing every tutor reservation the tutor is apart of. If it is confirmed, it will simply say CONFIRMED. If it is pending, it will allow the tutor to accept or deny the appointment.
+	 * Must call getTutorReservations() first
+	 * @return  A string containing html will be returned with reservations either confirmed or pending and in need of response.
+	 */ 
+	public function tutorConfirmationWidget()
 	{
 		$returnstring =  "<div class='card'>
   			<div class='card-header'>Tutoring Appointments</div>
@@ -183,7 +225,12 @@ Class Tutor_Selection
 		return $returnstring;
 	}
 
-	function confirmAppointment()
+	/**
+	 * This function will update the tutor confirmation for a specific reservation to confirmed.
+	 * Must call selectTutorID() and selectReservationID() first
+	 * @result If the tutorID matches that of the reservation, TutorConfirmation of the specific reservation in the reservation table will be updated to 1(Confirmed).
+	 */
+	public function confirmAppointment()
 	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -206,7 +253,12 @@ Class Tutor_Selection
 		}
 	}
 
-	function denyAppointment()
+	/**
+	 * This function will update the tutor confirmation for a specific reservation to denied and delete the tutor from the reservation.
+	 * Must call selectTutorID() and selectReservationID() first
+	 * @result If the tutorID matches that of the reservation, TutorConfirmation of the specific reservation in the reservation table will be updated to 2(Denied) and the TutorID will be set to NULL.
+	 */ 
+	public function denyAppointment()
 	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -229,7 +281,12 @@ Class Tutor_Selection
 		}
 	}
 
-	function getTutorReservationInfo()
+	/**
+	 * This function will run a query to get confirmation status and tutor info for the specified reservation.
+	 * Must call selectReservationID() first
+	 * @result $singleReservationArray will be assigned the query result
+	 */ 
+	public function getTutorReservationInfo()
 	{
 		try {
 		   $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -247,7 +304,12 @@ Class Tutor_Selection
 		}
 	}
 	
-	function printTutorReservationStatus()
+	/**
+	 * This function will return a string containing the tutor confirmation information for a specified reservation.
+	 * Must call getTutorReservationInfo() first
+	 * @return A string of html will be returned depending on what TutorConfirmation is equal to. 0 results in a simple "Add Tutor" button. 1 results in "(Tutor Name) has confirmed" string. 2 results in "TUTOR CANCELLED - ADD A NEW ONE" button. 3 results in "Waiting for (Tutor's Name) to confirm" string. 
+	 */ 
+	public function printTutorReservationStatus()
 	{
 		if($this->singleReservationArray['TutorConfirmation'] == 0)
 		{
