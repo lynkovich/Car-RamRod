@@ -1,5 +1,5 @@
 # Car-RamRod
-Comfort Studies (CS) <a href="https://dbdev-stark.cs.kent.edu/~lmaynar1/Capstone/FINALPRODUCT/sign.php"><img src="images/logo.png" title="Comfort Studies" alt="Comfort Studies"></a>
+Comfort Studies (CS) <a href="https://dbdev-stark.cs.kent.edu/~lmaynar1/Capstone/FINALPRODUCT/login/sign.php"><img src="images/logo.png" title="Comfort Studies" alt="Comfort Studies"></a>
 ## Table of Contents
 * [General Info](#general-info)
 * [Technologies](#technologies)
