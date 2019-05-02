@@ -21,3 +21,9 @@ Project is created with:
 
 ## Features
 The main features of CS is to have a live update on study rooms, better study room scheduler, and food ordering system.
+
+## Team
+
+| **Link** | **Clay** | **Andrew** | **Josh** |
+| :---: |:---:| :---:| :---:|
+| [![CS](https://avatars1.githubusercontent.com/u/35569437?v=3&s=100)](https://github.com)    | [![CS](https://avatars2.githubusercontent.com/u/36749776?v=2&s=100)](http://https://github.com) | [![CS](https://avatars3.githubusercontent.com/u/36925205?v=3&s=200)](http://https://github.com)  |[![CS](https://avatars2.githubusercontent.com/u/36925191?v=3&s=200)](http://https://github.com)  |
