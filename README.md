@@ -1,8 +1,9 @@
 # Car-RamRod
-Comfort Studies (CS)
+Comfort Studies (CS) <a href="https://dbdev-stark.cs.kent.edu/~lmaynar1/Capstone/FINALPRODUCT/sign.php"><img src="images/logo.png" title="Comfort Studies" alt="Comfort Studies"></a>
 ## Table of Contents
 * [General Info](#general-info)
 * [Technologies](#technologies)
+* [Features](#features)
 
 ## General Info
 CS is a web application developed for Capstone Project.
@@ -16,3 +17,7 @@ Project is created with:
 * Apache version: 2.4.6
 * MariaDB version: 5.5.60
 * MySQL version: 5.5.60
+* jQuery
+
+## Features
+The main features of the 
