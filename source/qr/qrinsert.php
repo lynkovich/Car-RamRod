@@ -30,13 +30,13 @@ try {
 			$result = $pdo->query($sql2);
 			$result = $pdo->query($sql1);
 			echo '<script language="javascript">';
-			echo 'if(confirm("Checked In.")) document.location = "https://dbdev-stark.cs.kent.edu/~lmaynar1/Capstone/linktest3/home.php"';
+			echo 'if(confirm("Checked In.")) document.location = "https://dbdev-stark.cs.kent.edu/~lmaynar1/Capstone/FINALPRODUCT/home.php"';
 			echo '</script>';
 		
 		}
 		else{
 			echo '<script language="javascript">';
-			echo 'if(confirm("Cannot check in, room is reserved within the next 30 minutes.")) document.location = "https://dbdev-stark.cs.kent.edu/~lmaynar1/Capstone/linktest3/home.php"';
+			echo 'if(confirm("Cannot check in, room is reserved within the next 30 minutes.")) document.location = "https://dbdev-stark.cs.kent.edu/~lmaynar1/Capstone/FINALPRODUCT/home.php"';
 			echo '</script>';
 			
 		}
