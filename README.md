@@ -21,7 +21,7 @@ Project is created with:
 * jQuery
 
 ## Features
-The main features of CS is to have a live update on study rooms, better study room scheduler, and food ordering system.
+The main features of CS is to have a live update on study rooms, better study room scheduler, and food ordering system.  To test as a student use the following info: teststudent pass:password
 
 ## Team
 
